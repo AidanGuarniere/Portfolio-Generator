@@ -1,24 +1,29 @@
-// requirements start 
+// inquirer requirment 
+const inquirer = require('inquirer');
 
-// enable file system
-const fs = require("fs");
+inquirer
+    .prompt ([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is your name?'
+        }
+    ])
+    .then(answers => console.log(answers));
+// // file system requirement
+// const fs = require("fs");
 
-// import generatePage function from page-template.js
-const generatePage = require('./src/page-template.js');
+// // import generatePage requirement
+// const generatePage = require("./src/page-template");
 
-//requirements end 
+// // assign name & github to the HTML
+// const pageHTML = generatePage(name, github);
 
-// create profile data array
-const profileDataArgs = process.argv.slice(2);
+// // write file with file system
+// fs.writeFile("./index.html", pageHTML, (err) => {
+//   // on fail
+//   if (err) throw err;
 
-// assign objects to the array
-const [name, github] = profileDataArgs;
-
-// write file with file system
-fs.writeFile("./index.html", generatePage(name, github), (err) => {
-  // on fail
-  if (err) throw new Error(err);
-
-  // on success
-  console.log("Portfolio complete! Check out index.html to see the output!");
-});
+//   // on success
+//   console.log("Portfolio complete! Check out index.html to see the output!");
+// });

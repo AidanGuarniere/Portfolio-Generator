@@ -1,0 +1,22 @@
+{
+  "name": "portfolio-generator",
+  "version": "1.0.0",
+  "description": "A digital portfolio created from the command line with Node.js.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AidanGuarniere/Portfolio-Generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AidanGuarniere/Portfolio-Generator/issues"
+  },
+  "homepage": "https://github.com/AidanGuarniere/Portfolio-Generator#readme",
+  "dependencies": {
+    "inquirer": "^7.3.3"
+  }
+}
