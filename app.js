@@ -1,5 +1,5 @@
-// file system requirement
-const fs = require("fs");
+// generate site import
+const { writeFile, copyFile } = require('./utils/generate-site.js');
 // inquirer requirement
 const inquirer = require("inquirer");
 // generate page import
@@ -151,21 +151,29 @@ Add a New Project
   );
 };
 
-// call promptUser function
+// call promptUser function to get user-based inquirer questions
 promptUser()
-  // then call promptProject
+  // then call promptProject to get project-based inquirer questions
   .then(promptProject)
-  // then pass this portfolioData to the pageHTML through the generatePage function
+  // then send the question answers (portfolioData) to generatePage to create HTML template code, pass template code to pageHTML
   .then((portfolioData) => {
-    const pageHTML = generatePage(portfolioData);
-    // write the index.html with pageHTML
-    fs.writeFile("./index.html", pageHTML, (err) => {
-      // on fail
-      if (err) throw new Error(err);
-
-      // on success
-      console.log(
-        "Page created! Check out index.html in this directory to see it!"
-      );
-    });
+    return generatePage(portfolioData);
+  })
+  // then write index.html based off of pageHTML
+  .then(pageHTML => {
+      return writeFile(pageHTML);
+  })
+  // then respond and call copyFile
+  .then(writeFileResponse => {
+      console.log(writeFileResponse);
+      // copy stylesheet to dist folder in order to apply to index.html
+      return copyFile();
+  })
+  // respond based off of copy success/fail
+  .then(copyFileResponse => {
+      console.log(copyFileResponse);
+  })
+  // catch errors if reject() is called
+  .catch(err => {
+      console.log(err);
   });
